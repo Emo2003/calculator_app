@@ -30,15 +30,15 @@ class CalculatorButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             child: Container(
               margin: EdgeInsets.symmetric(
-                  vertical: 11,
-                  horizontal: 10
+                vertical: 11,
+                horizontal: 10
               ),
 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
               ),
               child: isImage? Center(child: SvgPicture.asset("assets/images/delete.svg" ))
-                  :Center(
+              :Center(
                 child: Text(title ,
                   style: TextStyle(fontSize:27,
                       fontWeight: FontWeight.w600  , color: textColor),),
