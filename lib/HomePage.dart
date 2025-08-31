@@ -1,210 +1,148 @@
-import 'package:calculator_app/Calculator_Button.dart';
+import 'package:calculator/Buttons.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return HomePageState();
-  }
-}
-class HomePageState extends State<HomePage>{
-  String resultText="";
+  const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomePage> {
+   String resultText="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff17181A),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Container(
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    alignment: Alignment.centerRight,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("$savedNumber $savedOperator", style: TextStyle(fontWeight: FontWeight.w500,
-                            fontSize:25, color: Colors.grey),),
-
-                        Text(resultText, style: TextStyle(fontWeight: FontWeight.w500,
-                            fontSize:48 , color: Color(0xffFFFFFF)),),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex:   3,
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  alignment: Alignment.topRight,
                   child: Column(
-
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: Row(
-                          children: [
-                            CalculatorButton(
-                              onTap:DeleteOperator,
-                              title: "Ac" ,
-                              backgroundColor: Color(0xff616161),
-                              textColor: Colors.white,),
-                            CalculatorButton(
-                              onTap:DeleteDigit,
-                              title: "" ,
-                              isImage: true,
-                              backgroundColor: Color(0xff616161),
-                              textColor: Colors.white,),
-                            CalculatorButton(
-                              onTap:OperatorAaction,
-                              title: "/" ,
-                              backgroundColor: Color(0xff005DB2),
-                              textColor: Colors.white,),
-                            CalculatorButton(
-                              onTap:OperatorAaction,
-
-                              title: "x" ,
-                              backgroundColor: Color(0xff005DB2),
-                              textColor: Colors.white,)
-
-
-
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            CalculatorButton(
-                                onTap:NumberOperator,
-
-                                title: "7" ),
-                            CalculatorButton(
-                              onTap:NumberOperator,
-
-                              title: "8" ,),
-                            CalculatorButton(
-                              onTap:NumberOperator,
-
-                              title: "9" ,),
-                            CalculatorButton(
-                              onTap:OperatorAaction,
-
-                              title: "-" ,
-                              backgroundColor: Color(0xff005DB2),
-                              textColor: Colors.white,)
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Column(children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-
-                                        title: "4" ,),
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-
-                                        title: "5" ,
-                                      ),
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-
-                                        title: "6" ,),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-
-                                        title: "1" ,
-                                      ),
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-
-                                        title: "2" ,
-                                      ),
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-                                        title: "3" ,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-                                        title: "0" , flex: 2,
-                                      ),
-                                      CalculatorButton(
-                                        onTap:NumberOperator,
-                                        title: "." ,
-                                      ),
-
-
-
-
-                                    ],
-                                  ),
-                                ),
-                              ],),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Column(children: [
-                                CalculatorButton(
-                                  onTap:OperatorAaction,
-
-                                  title: "+" , backgroundColor: Color(0xff005DB2),
-                                  textColor: Colors.white,),
-                                CalculatorButton(
-                                  onTap:EqualOperator,
-                                  title: "=" ,  backgroundColor: Color(0xff29A8FF),
-                                  textColor: Colors.white, )
-                              ],),
-                            )
-                          ],
-                        ),
-                      )
+                      Text("$savedNumber $savedOperator",
+                      style: TextStyle(fontSize:24
+                          , fontWeight: FontWeight.w400 ,
+                          color: Colors.grey) ),
+                      Text(resultText,
+                        style: TextStyle(fontSize: 48
+                            , fontWeight: FontWeight.w500 ,
+                          color: Color(0xffFFFFFF)),)
                     ],
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Row(
+                        children: [
+                         CalculatorButton(title: "Ac", backgroundColor: Color(0xff616161),
+                           textColor: Colors.white,
+                         onTap: OnDeleteOperator,),
+                          CalculatorButton(title: "",
+                          backgroundColor:Color(0xff616161) ,
+                          textColor: Colors.white,
+                          onTap:OnDeleteDigit , isImage: true,),
+                          CalculatorButton(title: "/", onTap: OnClickedOperator,
+                          backgroundColor: Color(0xff005DB2), textColor: Color(0xffFFFFFF)),
+                          CalculatorButton(title: "x" ,onTap: OnClickedOperator,
+                              backgroundColor: Color(0xff005DB2) ,
+                            textColor: Color(0xffFFFFFF),)
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          CalculatorButton(title: "7",
+                          onTap: OnDigitOperator,),
+                          CalculatorButton(title: "8", onTap:OnDigitOperator ,),
+                          CalculatorButton(title: "9", onTap: OnDigitOperator,),
+                          CalculatorButton(title: "-",onTap: OnClickedOperator,
+                              backgroundColor: Color(0xff005DB2), textColor: Color(0xffFFFFFF))
+                        ],
+                      ),
+                    ),
+                   Expanded(
+                     flex: 3,
+                     child: Row(
+                       children: [
+                         Expanded(
+                           flex: 3,
+                           child: Column(
+                             children: [
+                               Expanded(
+                                 child: Row(
+                                   children: [CalculatorButton(title: "4",onTap:OnDigitOperator ,),
+                                     CalculatorButton(title: "5",onTap:OnDigitOperator),
+                                     CalculatorButton(title: "6",onTap:OnDigitOperator),],
+                                 ),
+                               ),
+                               Expanded(
+                                 child: Row(
+                                   children: [CalculatorButton(title: "1",onTap:OnDigitOperator),
+                                     CalculatorButton(title: "2",onTap:OnDigitOperator),
+                                     CalculatorButton(title: "3",onTap:OnDigitOperator),],
+                                 ),
+                               ),
+                               Expanded(
+                                 child: Row(
+                                   children: [CalculatorButton(title: "0",onTap:OnDigitOperator , flex: 2,),
+                                     CalculatorButton(title: ".",onTap:OnDigitOperator),],
+                                 ),
+                               ),
+                             ],
+                           ),
+                         ),
+                         Expanded(
+                           flex: 1,
+                           child: Column(
+                             children: [
+                               CalculatorButton(title: "+",onTap:OnClickedOperator,
+                               backgroundColor: Color(0xff005DB2), textColor: Color(0xffFFFFFF),),
+                               CalculatorButton(title: "=",onTap:OnEqualOperator,
+                                   backgroundColor: Color(0xff29A8FF), textColor: Color(0xffFFFFFF))
+                             ],
+                           ),
+                         )
+                       ],
+                     ),
+                   )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
     );
   }
-  String savedNumber="";
+String savedNumber="";
   String savedOperator="";
-NumberOperator(String digit){
-  if(digit=="."){
-    if(!resultText.contains(".")){
+  OnDigitOperator(String digit){
+    if(digit=="."){
+      if(!resultText.contains(".")){
+        setState(() {
+          resultText+=digit;
+        });
+      }
+    }
+    else {
       setState(() {
-        resultText+=digit;
+        resultText += digit;
       });
     }
   }
-  else{
-    setState(() {
-      resultText+=digit;
-    });}
-}
-OperatorAaction(String operator){
+  OnClickedOperator(String operator){
     if(savedNumber.isEmpty){
      setState(() {
        savedNumber=resultText;
@@ -213,59 +151,66 @@ OperatorAaction(String operator){
      });
     }
     else{
-      String rhs=resultText;
-    double resultCalculate= Calculation(double.parse(savedNumber),double.parse(rhs) , savedOperator);
-      setState(() {
-        savedNumber=resultCalculate.toString();
-        savedOperator=operator;
-        resultText="";
-      });
+      double rhs=double.parse(resultText);
+      double resultCalculate=Calculation(double.parse(savedNumber), rhs, savedOperator);
+     setState(() {
+       savedNumber=resultCalculate.toString();
+       savedOperator=operator;
+      resultText="";
+     });
     }
-}
-double Calculation(double lhs , double rhs , String operator){
- switch (operator){
-   case "+":
-     return lhs+rhs;
-   case "-":
-     return lhs-rhs;
-   case "x":
-     return lhs*rhs;
-   default:
-     return lhs/rhs;
-
- }
- }
- EqualOperator(String operator){
-  if(savedNumber.isNotEmpty){
-    if(resultText.isEmpty){
-   setState(() {
-     resultText=savedNumber;
-     savedNumber="";
-     savedOperator="";
-   });
   }
-  else{
-    String rhs=resultText;
-    double resultCalculate= Calculation(double.parse(savedNumber),double.parse(rhs) , savedOperator);
-    setState(() {
-      resultText=resultCalculate.toString();
-      savedOperator="";
-      savedNumber="";
-    });
-  }}
+ double Calculation(double lhs , double rhs, String operator){
+    switch (operator){
+      case "+":
+        return lhs+rhs;
+      case "-":
+        return lhs-rhs;
+      case "x":
+        return lhs*rhs;
+      default :
+        return lhs/rhs;
+    }
  }
- DeleteOperator(String operator){
-  setState(() {
-    savedNumber="";
-    savedOperator="";
-    resultText="";
-  });
- }
- DeleteDigit(String operator){
-  setState(() {
-    int result = int.parse(resultText)~/10;
-    resultText=result.toString();
-  });
- }
+ OnEqualOperator(String operator){
+    if(savedNumber.isNotEmpty){
+      if(resultText.isEmpty){
+      setState(() {
+        resultText=savedNumber;
+        savedOperator="";
+        savedNumber="";
+      });
+      }
+      else{
+        double rhs=double.parse(resultText);
+        double resultCalculate=Calculation(double.parse(savedNumber), rhs, savedOperator);
+        setState(() {
+          savedNumber="";
+          savedOperator="";
+          resultText=resultCalculate.toString();
+        });
 
+      }
+    }
+ }
+ OnDeleteOperator(String operator){
+    setState(() {
+      resultText="";
+      savedNumber="";
+      savedOperator="";
+    });
+ }
+ OnDeleteDigit(String operator){
+    setState(() {
+      num result = num.parse(resultText);
+      if(result==result.toInt()){
+        result~/=10;
+        resultText=result.toString();
+      }
+      else{
+        result = (result * 10).floor() / 10;
+        resultText = result.toString();
+      }
+    });
+ }
 }
