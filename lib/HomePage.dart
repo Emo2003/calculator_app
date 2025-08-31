@@ -202,18 +202,20 @@ String savedNumber="";
       savedOperator="";
     });
  }
-    OnDeleteDigit(String operator) {
+ OnDeleteDigit(String operator) {
      setState(() {
-       if(savedNumber.isEmpty){
        if (resultText.length <= 1) {
          resultText = '0';
          return;
-       }}
+       }
        resultText = resultText.substring(0, resultText.length - 1);
-
        if (resultText.endsWith('.')) {
-         resultText = resultText.substring(0, resultText.length - 1);
-
+         return;
+       }
+         if (resultText.contains('.')) {
+         if (resultText.endsWith('.')) {
+           resultText = resultText.substring(0, resultText.length - 1);
+         }
        }
      });
    }
