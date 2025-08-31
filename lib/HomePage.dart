@@ -129,20 +129,21 @@ class _HomeScreenState extends State<HomePage> {
   }
 String savedNumber="";
   String savedOperator="";
-  OnDigitOperator(String digit){
-    if(digit=="."){
-      if(!resultText.contains(".")){
-        setState(() {
-          resultText+=digit;
-        });
-      }
-    }
-    else {
-      setState(() {
-        resultText += digit;
-      });
-    }
-  }
+   void OnDigitOperator(String digit) {
+     setState(() {
+       if (digit == ".") {
+         if (!resultText.contains(".")) {
+           resultText += digit;
+         }
+       } else {
+         if (resultText == "0") {
+           resultText = digit;
+         } else {
+           resultText += digit;
+         }
+       }
+     });
+   }
   OnClickedOperator(String operator){
     if(savedNumber.isEmpty){
      setState(() {
@@ -201,17 +202,20 @@ String savedNumber="";
       savedOperator="";
     });
  }
- OnDeleteDigit(String operator){
-    setState(() {
-      num result = num.parse(resultText);
-      if(result==result.toInt()){
-        result~/=10;
-        resultText=result.toString();
-      }
-      else{
-        result = (result * 10).floor() / 10;
-        resultText = result.toString();
-      }
-    });
- }
+   void OnDeleteDigit(String operator) {
+     setState(() {
+       if(savedNumber.isEmpty){
+       if (resultText.length <= 1) {
+         resultText = '0';
+         return;
+       }
+       resultText = resultText.substring(0, resultText.length - 1);
+
+       if (resultText.endsWith('.')) {
+         resultText = resultText.substring(0, resultText.length - 1);
+       }
+       }
+     });
+   }
+
 }
