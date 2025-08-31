@@ -211,13 +211,7 @@ String savedNumber="";
        resultText = resultText.substring(0, resultText.length - 1);
        if (resultText.endsWith('.')) {
          return;
-       }
-         if (resultText.contains('.')) {
-         if (resultText.endsWith('.')) {
-           resultText = resultText.substring(0, resultText.length - 1);
-         }
-       }
-     });
+       }});
    }
 
 }
